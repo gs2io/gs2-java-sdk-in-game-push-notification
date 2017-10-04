@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: openjdk:8-jdk-browsers
+      - image: circleci/openjdk:8-jdk-browsers
         environment:
           CIRCLE_ARTIFACTS: /tmp/test-results
     steps:
