@@ -32,6 +32,9 @@ public class MqttHost implements Serializable {
 	/** ホスト名 */
 	String host;
 
+	/** ゲームGRN */
+	String gameId;
+
 	/** 待受ポート */
 	Integer port;
 
@@ -55,6 +58,24 @@ public class MqttHost implements Serializable {
 	 */
 	public void setHost(String host) {
 		this.host = host;
+	}
+
+	/**
+	 * ゲームGRNを取得
+	 *
+	 * @return ゲームGRN
+	 */
+	public String getGameId() {
+		return gameId;
+	}
+
+	/**
+	 * ゲームGRNを設定
+	 *
+	 * @param gameId ゲームGRN
+	 */
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
 	}
 
 	/**

@@ -29,9 +29,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class WebSocketHost implements Serializable {
 
+	/** ゲームGRN */
+	String gameId;
+
 	/** エンドポイント名 */
 	String endpoint;
 
+
+	/**
+	 * ゲームGRNを取得
+	 *
+	 * @return ゲームGRN
+	 */
+	public String getGameId() {
+		return gameId;
+	}
+
+	/**
+	 * ゲームGRNを設定
+	 *
+	 * @param gameId ゲームGRN
+	 */
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
+	}
 
 	/**
 	 * エンドポイント名を取得
