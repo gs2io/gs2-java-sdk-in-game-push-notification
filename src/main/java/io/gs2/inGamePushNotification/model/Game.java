@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,34 +31,34 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Game implements Serializable {
 
 	/** ゲームID */
-	String gameId;
+	private String gameId;
 
 	/** ゲーム名 */
-	String name;
+	private String name;
 
 	/** 説明文 */
-	String description;
+	private String description;
 
 	/** サービスクラス */
-	String serviceClass;
+	private String serviceClass;
 
 	/** 作成日時(エポック秒) */
-	Integer createAt;
+	private Integer createAt;
 
 	/** http/https を選択した際の転送先URL */
-	String notificationUrl;
+	private String notificationUrl;
 
 	/** オーナーID */
-	String ownerId;
+	private String ownerId;
 
 	/** 最終更新日時(エポック秒) */
-	Integer updateAt;
+	private Integer updateAt;
 
 	/** 対象がオフライン時使用する転送方式 */
-	String offlineTransfer;
+	private String offlineTransfer;
 
 	/** fcm を選択した際の Firebase サーバーキー */
-	String notificationFirebaseServerKey;
+	private String notificationFirebaseServerKey;
 
 
 	/**

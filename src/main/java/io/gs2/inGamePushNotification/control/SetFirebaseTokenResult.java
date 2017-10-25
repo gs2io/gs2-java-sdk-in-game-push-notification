@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.gs2.inGamePushNotification.model.FirebaseToken;
@@ -28,7 +29,7 @@ import io.gs2.inGamePushNotification.model.FirebaseToken;
 public class SetFirebaseTokenResult {
 
 	/** Firebase 通知トークン */
-	FirebaseToken item;
+	private FirebaseToken item;
 
 
 	/**

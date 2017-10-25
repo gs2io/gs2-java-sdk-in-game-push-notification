@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -30,13 +31,13 @@ public class DescribeStatusRequest extends Gs2BasicRequest<DescribeStatusRequest
 	}
 
 	/** ゲームの名前 */
-	String gameName;
+	private String gameName;
 
 	/** データの取得を開始する位置を指定するトークン */
-	String pageToken;
+	private String pageToken;
 
 	/** データの取得件数 */
-	Integer limit;
+	private Integer limit;
 
 
 	/**
@@ -98,7 +99,7 @@ public class DescribeStatusRequest extends Gs2BasicRequest<DescribeStatusRequest
 	}
 
 	/**
-	 * データの取得件数
+	 * データの取得件数を取得
 	 *
 	 * @return データの取得件数
 	 */

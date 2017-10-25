@@ -16,8 +16,9 @@
 
 package io.gs2.inGamePushNotification.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import java.util.List;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
  * @author Game Server Services, Inc.
@@ -30,22 +31,22 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	}
 
 	/** ゲームの名前 */
-	String gameName;
+	private String gameName;
 
 	/** オフライン転送先URL */
-	String notificationUrl;
+	private String notificationUrl;
 
 	/** サービスクラス */
-	String serviceClass;
+	private String serviceClass;
 
 	/** Firebaseのサーバーキー */
-	String notificationFirebaseServerKey;
+	private String notificationFirebaseServerKey;
 
 	/** オフライン転送方式 */
-	String offlineTransfer;
+	private String offlineTransfer;
 
 	/** 説明文 */
-	String description;
+	private String description;
 
 
 	/**

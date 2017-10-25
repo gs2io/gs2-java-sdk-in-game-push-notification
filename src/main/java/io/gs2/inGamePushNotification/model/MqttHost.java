@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,16 +31,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class MqttHost implements Serializable {
 
 	/** ホスト名 */
-	String host;
+	private String host;
 
 	/** ゲームGRN */
-	String gameId;
+	private String gameId;
 
 	/** 待受ポート */
-	Integer port;
+	private Integer port;
 
 	/** ルート証明書 */
-	String rootCertificate;
+	private String rootCertificate;
 
 
 	/**

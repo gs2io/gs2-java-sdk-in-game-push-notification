@@ -16,11 +16,12 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.gs2.inGamePushNotification.model.Game;
-
 import java.util.List;
+
+import io.gs2.inGamePushNotification.model.Game;
 
 
 /**
@@ -30,10 +31,10 @@ import java.util.List;
 public class DescribeGameResult {
 
 	/** 次のページを読み込むためのトークン */
-	String nextPageToken;
+	private String nextPageToken;
 
 	/** ゲーム */
-	List<Game> items;
+	private List<Game> items;
 
 
 	/**

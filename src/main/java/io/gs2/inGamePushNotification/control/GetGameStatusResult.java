@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -26,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class GetGameStatusResult {
 
 	/** ステータス */
-	String status;
+	private String status;
 
 
 	/**

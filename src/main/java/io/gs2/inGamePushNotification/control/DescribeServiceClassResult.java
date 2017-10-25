@@ -16,9 +16,8 @@
 
 package io.gs2.inGamePushNotification.control;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
@@ -28,7 +27,7 @@ import java.util.List;
 public class DescribeServiceClassResult {
 
 	/** サービスクラス一覧 */
-	List<String> items;
+	private List<String> items;
 
 
 	/**

@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,16 +31,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Status implements Serializable {
 
 	/** ステータス */
-	String status;
+	private String status;
 
 	/** 登録日時 */
-	Integer createAt;
+	private Integer createAt;
 
 	/** ユーザID */
-	String userId;
+	private String userId;
 
 	/** Firebaseトークン */
-	String fcmToken;
+	private String fcmToken;
 
 
 	/**

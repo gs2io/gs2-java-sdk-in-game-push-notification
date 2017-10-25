@@ -16,8 +16,8 @@
 
 package io.gs2.inGamePushNotification.control;
 
-import io.gs2.control.Gs2UserRequest;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
+import io.gs2.control.Gs2UserRequest;
 
 /**
  * @author Game Server Services, Inc.
@@ -30,7 +30,7 @@ public class GetMqttHostRequest extends Gs2UserRequest<GetMqttHostRequest> {
 	}
 
 	/** ゲームの名前 */
-	String gameName;
+	private String gameName;
 
 
 	/**

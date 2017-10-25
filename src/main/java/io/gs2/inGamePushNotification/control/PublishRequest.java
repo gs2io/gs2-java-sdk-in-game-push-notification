@@ -16,8 +16,9 @@
 
 package io.gs2.inGamePushNotification.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import java.util.List;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
  * @author Game Server Services, Inc.
@@ -30,22 +31,22 @@ public class PublishRequest extends Gs2BasicRequest<PublishRequest> {
 	}
 
 	/** ゲームの名前 */
-	String gameName;
+	private String gameName;
 
 	/** 通知の送信先ユーザID */
-	String userId;
+	private String userId;
 
 	/** 本文 */
-	String body;
+	private String body;
 
 	/** 対象ユーザがオフラインの場合に転送を実行するか */
-	Boolean enableOfflineTransfer;
+	private Boolean enableOfflineTransfer;
 
 	/** Firebaseへの転送時に使用する通知音ファイル名 */
-	String offlineTransferSound;
+	private String offlineTransferSound;
 
 	/** 件名 */
-	String subject;
+	private String subject;
 
 
 	/**

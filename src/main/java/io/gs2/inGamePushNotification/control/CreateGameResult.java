@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.gs2.inGamePushNotification.model.Game;
@@ -28,7 +29,7 @@ import io.gs2.inGamePushNotification.model.Game;
 public class CreateGameResult {
 
 	/** ゲーム */
-	Game item;
+	private Game item;
 
 
 	/**

@@ -16,8 +16,9 @@
 
 package io.gs2.inGamePushNotification.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import java.util.List;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
  * @author Game Server Services, Inc.

@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,18 +30,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Certificate implements Serializable {
 
+	/** PFXフォーマットの秘密鍵 */
+	private String pfx;
+
 	/** 証明書ID */
-	String certificateId;
+	private String certificateId;
 
 	/** 秘密鍵 */
-	String privateKey;
+	private String privateKey;
 
 	/** クライアント証明書 */
-	String certificate;
+	private String certificate;
 
-	/** PFXフォーマットの秘密鍵 */
-	String pfx;
 
+	/**
+	 * PFXフォーマットの秘密鍵を取得
+	 *
+	 * @return PFXフォーマットの秘密鍵
+	 */
+	public String getPfx() {
+		return pfx;
+	}
+
+	/**
+	 * PFXフォーマットの秘密鍵を設定
+	 *
+	 * @param pfx PFXフォーマットの秘密鍵
+	 */
+	public void setPfx(String pfx) {
+		this.pfx = pfx;
+	}
 
 	/**
 	 * 証明書IDを取得
@@ -96,21 +115,4 @@ public class Certificate implements Serializable {
 		this.certificate = certificate;
 	}
 
-	/**
-	 * PFXフォーマットの秘密鍵を取得
-	 *
-	 * @return PFXフォーマットの秘密鍵
-	 */
-	public String getPfx() {
-		return pfx;
-	}
-
-	/**
-	 * PFXフォーマットの秘密鍵を設定
-	 *
-	 * @param pfx PFXフォーマットの秘密鍵
-	 */
-	public void setPfx(String pfx) {
-		this.pfx = pfx;
-	}
 }

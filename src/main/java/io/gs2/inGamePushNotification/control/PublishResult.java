@@ -16,7 +16,10 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.gs2.inGamePushNotification.model.PublishResponse;
 
 
 /**
@@ -26,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class PublishResult {
 
 	/** 通知結果 */
-	io.gs2.inGamePushNotification.model.PublishResult item;
+	private PublishResponse item;
 
 
 	/**
@@ -34,7 +37,7 @@ public class PublishResult {
 	 *
 	 * @return 通知結果
 	 */
-	public io.gs2.inGamePushNotification.model.PublishResult getItem() {
+	public PublishResponse getItem() {
 		return item;
 	}
 
@@ -43,7 +46,7 @@ public class PublishResult {
 	 *
 	 * @param item 通知結果
 	 */
-	public void setItem(io.gs2.inGamePushNotification.model.PublishResult item) {
+	public void setItem(PublishResponse item) {
 		this.item = item;
 	}
 

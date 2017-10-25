@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
@@ -30,10 +31,10 @@ import io.gs2.inGamePushNotification.model.Status;
 public class DescribeStatusResult {
 
 	/** 次のページを読み込むためのトークン */
-	String nextPageToken;
+	private String nextPageToken;
 
 	/** オンラインステータス */
-	List<Status> items;
+	private List<Status> items;
 
 
 	/**

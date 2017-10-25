@@ -16,7 +16,9 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.gs2.inGamePushNotification.model.MqttHost;
 
 
@@ -27,7 +29,7 @@ import io.gs2.inGamePushNotification.model.MqttHost;
 public class GetMqttHostResult {
 
 	/** MQTTサーバ */
-	MqttHost item;
+	private MqttHost item;
 
 
 	/**

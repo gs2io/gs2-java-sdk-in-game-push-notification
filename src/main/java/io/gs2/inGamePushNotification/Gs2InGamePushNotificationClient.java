@@ -19,6 +19,7 @@ package io.gs2.inGamePushNotification;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.gs2.util.EncodingUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -32,8 +33,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import io.gs2.AbstractGs2Client;
 import io.gs2.Gs2Constant;
-import io.gs2.inGamePushNotification.control.*;
 import io.gs2.model.IGs2Credential;
+import io.gs2.inGamePushNotification.control.*;
 
 /**
  * GS2 InGamePushNotification API クライアント
@@ -43,7 +44,7 @@ import io.gs2.model.IGs2Credential;
  */
 public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGamePushNotificationClient> {
 
-	public static String ENDPOINT = "in-game-push-notification";
+	public static String ENDPOINT = "inGamePushNotification";
 
 	/**
 	 * コンストラクタ。
@@ -79,6 +80,54 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 
 	/**
+	 * MQTTサーバ情報を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+	 * @return 結果
+	 */
+	public GetMqttHostResult getMqttHost(GetMqttHostRequest request) {
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/server/mqtt";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetMqttHostRequest.Constant.MODULE,
+				GetMqttHostRequest.Constant.FUNCTION);
+
+        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+		return doRequest(get, GetMqttHostResult.class);
+	}
+
+
+	/**
+	 * MQTT over Websocketサーバ情報を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+	 * @return 結果
+	 */
+	public GetWebSocketHostResult getWebSocketHost(GetWebSocketHostRequest request) {
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/server/webSocket";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetWebSocketHostRequest.Constant.MODULE,
+				GetWebSocketHostRequest.Constant.FUNCTION);
+
+        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+		return doRequest(get, GetWebSocketHostResult.class);
+	}
+
+
+	/**
 	 * Firebase のデバイストークンを設定します。<br>
 	 * <br>
 	 * - 消費クオータ: 10<br>
@@ -92,14 +141,14 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				.put("token", request.getToken());
 
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/user",
 				credential,
 				ENDPOINT,
 				SetFirebaseTokenRequest.Constant.MODULE,
 				SetFirebaseTokenRequest.Constant.FUNCTION,
 				body.toString());
 
-		put.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+        put.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 		return doRequest(put, SetFirebaseTokenResult.class);
 	}
 
@@ -112,11 +161,11 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 * @return 結果
 	 */
 	public DescribeStatusResult describeStatus(DescribeStatusRequest request) {
-		String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/user";
 
-		List<NameValuePair> queryString = new ArrayList<>();
-		if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
-		if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
+        List<NameValuePair> queryString = new ArrayList<>();
+        if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
+        if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
 
 
 		if(queryString.size() > 0) {
@@ -134,6 +183,34 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 
 	/**
+	 * 通知を送信します。<br>
+	 * <br>
+	 * - 消費クオータ: 3<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+	 * @return 結果
+	 */
+	public PublishResult publish(PublishRequest request) {
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("body", request.getBody())
+				.put("enableOfflineTransfer", request.getEnableOfflineTransfer())
+				.put("subject", request.getSubject());
+
+        if(request.getOfflineTransferSound() != null) body.put("offlineTransferSound", request.getOfflineTransferSound());
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/user/" + (request.getUserId() == null ? "null" : EncodingUtil.urlEncode(request.getUserId())) + "",
+				credential,
+				ENDPOINT,
+				PublishRequest.Constant.MODULE,
+				PublishRequest.Constant.FUNCTION,
+				body.toString());
+
+		return doRequest(post, PublishResult.class);
+	}
+
+
+	/**
 	 * ゲームを新規作成します<br>
 	 * <br>
 	 * GS2-InGamePushNotification の使用を開始するには、まずはゲームを作成します。<br>
@@ -147,6 +224,14 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 * 1つ目は何もしない。<br>
 	 * 2つ目は指定したURLに通知する。<br>
 	 * 3つ目は Firebase Cloud Messaging を使用してモバイルプッシュ通知する。です。<br>
+	 * <br>
+	 * http/https を指定した場合、以下のフォーマットでURLにPOSTします。<br>
+	 * {<br>
+	 *   "_gs2_service": "gs2-in-game-push-notification",<br>
+	 *   "userId": ユーザID<br>
+	 *   "subject": サブジェクト,<br>
+	 *   "body": ボディ,<br>
+	 * }<br>
 	 * <br>
 	 * APIリクエスト以外に各デバイスがMQTTサーバに新しく接続する際に クオータを10消費する点にご注意ください。<br>
 	 * <br>
@@ -203,6 +288,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 		return doRequest(get, DescribeGameResult.class);
 	}
 
+
 	/**
 	 * ゲームの状態を取得します<br>
 	 * <br>
@@ -211,7 +297,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 * @return 結果
 	 */
 	public GetGameStatusResult getGameStatus(GetGameStatusRequest request) {
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/status";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/status";
 
 
 
@@ -243,7 +329,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
 
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/certificate",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/certificate",
 				credential,
 				ENDPOINT,
 				CreateCertificateRequest.Constant.MODULE,
@@ -265,7 +351,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 */
 	public void deleteCertificate(DeleteCertificateRequest request) {
 		HttpDelete delete = createHttpDelete(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/certificate",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "/certificate",
 				credential,
 				ENDPOINT,
 				DeleteCertificateRequest.Constant.MODULE,
@@ -275,81 +361,6 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 		doRequest(delete, null);
 	}
 
-
-	/**
-	 * MQTTサーバ情報を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-	 * @return 結果
-	 */
-	public GetMqttHostResult getMqttHost(GetMqttHostRequest request) {
-		String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/server/mqtt";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetMqttHostRequest.Constant.MODULE,
-				GetMqttHostRequest.Constant.FUNCTION);
-
-		get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
-		return doRequest(get, GetMqttHostResult.class);
-	}
-
-
-	/**
-	 * MQTT over Websocketサーバ情報を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-	 * @return 結果
-	 */
-	public GetWebSocketHostResult getWebSocketHost(GetWebSocketHostRequest request) {
-		String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/server/webSocket";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetWebSocketHostRequest.Constant.MODULE,
-				GetWebSocketHostRequest.Constant.FUNCTION);
-
-		get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
-		return doRequest(get, GetWebSocketHostResult.class);
-	}
-
-
-	/**
-	 * 通知を送信します。<br>
-	 * <br>
-	 * - 消費クオータ: 3<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-	 * @return 結果
-	 */
-	public PublishResult publish(PublishRequest request) {
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("body", request.getBody())
-				.put("enableOfflineTransfer", request.getEnableOfflineTransfer())
-				.put("subject", request.getSubject());
-
-		if(request.getOfflineTransferSound() != null) body.put("offlineTransferSound", request.getOfflineTransferSound());
-		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user/" + (request.getUserId() == null ? "null" : request.getUserId()) + "",
-				credential,
-				ENDPOINT,
-				PublishRequest.Constant.MODULE,
-				PublishRequest.Constant.FUNCTION,
-				body.toString());
-
-		return doRequest(post, PublishResult.class);
-	}
 
 	/**
 	 * ゲームを更新します<br>
@@ -367,7 +378,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
         if(request.getNotificationFirebaseServerKey() != null) body.put("notificationFirebaseServerKey", request.getNotificationFirebaseServerKey());
         if(request.getDescription() != null) body.put("description", request.getDescription());
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "",
 				credential,
 				ENDPOINT,
 				UpdateGameRequest.Constant.MODULE,
@@ -386,7 +397,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 * @return 結果
 	 */
 	public GetGameResult getGame(GetGameRequest request) {
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "";
 
 
 
@@ -409,7 +420,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	 */
 	public void deleteGame(DeleteGameRequest request) {
 		HttpDelete delete = createHttpDelete(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : EncodingUtil.urlEncode(request.getGameName())) + "",
 				credential,
 				ENDPOINT,
 				DeleteGameRequest.Constant.MODULE,

@@ -16,6 +16,7 @@
 
 package io.gs2.inGamePushNotification.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,10 +31,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class WebSocketHost implements Serializable {
 
 	/** ゲームGRN */
-	String gameId;
+	private String gameId;
 
 	/** エンドポイント名 */
-	String endpoint;
+	private String endpoint;
 
 
 	/**
