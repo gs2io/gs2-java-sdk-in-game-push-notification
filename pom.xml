@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.gs2</groupId>
   <artifactId>gs2-java-sdk-in-game-push-notification</artifactId>
-  <version>0.2.1</version>
+  <version>0.2.2</version>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
