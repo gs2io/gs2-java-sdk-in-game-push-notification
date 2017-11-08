@@ -16,6 +16,8 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.inGamePushNotification.Gs2InGamePushNotification;
 import io.gs2.control.Gs2UserRequest;
 

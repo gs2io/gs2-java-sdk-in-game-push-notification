@@ -16,11 +16,10 @@
 
 package io.gs2.inGamePushNotification.control;
 
+import org.json.JSONObject;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import io.gs2.inGamePushNotification.model.Game;
-
+import io.gs2.inGamePushNotification.model.*;
 
 /**
  * @author Game Server Services, Inc.
