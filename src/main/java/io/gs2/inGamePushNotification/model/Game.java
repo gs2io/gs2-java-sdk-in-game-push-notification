@@ -30,26 +30,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Game implements Serializable {
 
+	/** クライアント証明書発行完了時 に実行されるGS2-Script */
+	private String createCertificateDoneTriggerScript;
+
+	/** Firebaseデバイストークン登録時 に実行されるGS2-Script */
+	private String setFirebaseTokenTriggerScript;
+
 	/** ゲームID */
 	private String gameId;
-
-	/** ゲーム名 */
-	private String name;
 
 	/** 説明文 */
 	private String description;
 
+	/** 通知送信時 に実行されるGS2-Script */
+	private String publishTriggerScript;
+
 	/** サービスクラス */
 	private String serviceClass;
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** クライアント証明書発行時 に実行されるGS2-Script */
+	private String createCertificateTriggerScript;
 
-	/** http/https を選択した際の転送先URL */
-	private String notificationUrl;
-
-	/** オーナーID */
-	private String ownerId;
+	/** クライアント証明書削除時 に実行されるGS2-Script */
+	private String deleteCertificateTriggerScript;
 
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
@@ -60,6 +63,63 @@ public class Game implements Serializable {
 	/** fcm を選択した際の Firebase サーバーキー */
 	private String notificationFirebaseServerKey;
 
+	/** クライアント証明書削除完了時 に実行されるGS2-Script */
+	private String deleteCertificateDoneTriggerScript;
+
+	/** ゲーム名 */
+	private String name;
+
+	/** Firebaseデバイストークン登録完了時 に実行されるGS2-Script */
+	private String setFirebaseTokenDoneTriggerScript;
+
+	/** 通知送信完了時 に実行されるGS2-Script */
+	private String publishDoneTriggerScript;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
+	/** http/https を選択した際の転送先URL */
+	private String notificationUrl;
+
+	/** オーナーID */
+	private String ownerId;
+
+
+	/**
+	 * クライアント証明書発行完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return クライアント証明書発行完了時 に実行されるGS2-Script
+	 */
+	public String getCreateCertificateDoneTriggerScript() {
+		return createCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param createCertificateDoneTriggerScript クライアント証明書発行完了時 に実行されるGS2-Script
+	 */
+	public void setCreateCertificateDoneTriggerScript(String createCertificateDoneTriggerScript) {
+		this.createCertificateDoneTriggerScript = createCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return Firebaseデバイストークン登録時 に実行されるGS2-Script
+	 */
+	public String getSetFirebaseTokenTriggerScript() {
+		return setFirebaseTokenTriggerScript;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param setFirebaseTokenTriggerScript Firebaseデバイストークン登録時 に実行されるGS2-Script
+	 */
+	public void setSetFirebaseTokenTriggerScript(String setFirebaseTokenTriggerScript) {
+		this.setFirebaseTokenTriggerScript = setFirebaseTokenTriggerScript;
+	}
 
 	/**
 	 * ゲームIDを取得
@@ -77,24 +137,6 @@ public class Game implements Serializable {
 	 */
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
-	}
-
-	/**
-	 * ゲーム名を取得
-	 *
-	 * @return ゲーム名
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * ゲーム名を設定
-	 *
-	 * @param name ゲーム名
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**
@@ -116,6 +158,24 @@ public class Game implements Serializable {
 	}
 
 	/**
+	 * 通知送信時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 通知送信時 に実行されるGS2-Script
+	 */
+	public String getPublishTriggerScript() {
+		return publishTriggerScript;
+	}
+
+	/**
+	 * 通知送信時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishTriggerScript 通知送信時 に実行されるGS2-Script
+	 */
+	public void setPublishTriggerScript(String publishTriggerScript) {
+		this.publishTriggerScript = publishTriggerScript;
+	}
+
+	/**
 	 * サービスクラスを取得
 	 *
 	 * @return サービスクラス
@@ -134,57 +194,39 @@ public class Game implements Serializable {
 	}
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * クライアント証明書発行時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return クライアント証明書発行時 に実行されるGS2-Script
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getCreateCertificateTriggerScript() {
+		return createCertificateTriggerScript;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * クライアント証明書発行時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param createCertificateTriggerScript クライアント証明書発行時 に実行されるGS2-Script
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setCreateCertificateTriggerScript(String createCertificateTriggerScript) {
+		this.createCertificateTriggerScript = createCertificateTriggerScript;
 	}
 
 	/**
-	 * http/https を選択した際の転送先URLを取得
+	 * クライアント証明書削除時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return http/https を選択した際の転送先URL
+	 * @return クライアント証明書削除時 に実行されるGS2-Script
 	 */
-	public String getNotificationUrl() {
-		return notificationUrl;
+	public String getDeleteCertificateTriggerScript() {
+		return deleteCertificateTriggerScript;
 	}
 
 	/**
-	 * http/https を選択した際の転送先URLを設定
+	 * クライアント証明書削除時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param notificationUrl http/https を選択した際の転送先URL
+	 * @param deleteCertificateTriggerScript クライアント証明書削除時 に実行されるGS2-Script
 	 */
-	public void setNotificationUrl(String notificationUrl) {
-		this.notificationUrl = notificationUrl;
-	}
-
-	/**
-	 * オーナーIDを取得
-	 *
-	 * @return オーナーID
-	 */
-	public String getOwnerId() {
-		return ownerId;
-	}
-
-	/**
-	 * オーナーIDを設定
-	 *
-	 * @param ownerId オーナーID
-	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setDeleteCertificateTriggerScript(String deleteCertificateTriggerScript) {
+		this.deleteCertificateTriggerScript = deleteCertificateTriggerScript;
 	}
 
 	/**
@@ -239,6 +281,132 @@ public class Game implements Serializable {
 	 */
 	public void setNotificationFirebaseServerKey(String notificationFirebaseServerKey) {
 		this.notificationFirebaseServerKey = notificationFirebaseServerKey;
+	}
+
+	/**
+	 * クライアント証明書削除完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return クライアント証明書削除完了時 に実行されるGS2-Script
+	 */
+	public String getDeleteCertificateDoneTriggerScript() {
+		return deleteCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param deleteCertificateDoneTriggerScript クライアント証明書削除完了時 に実行されるGS2-Script
+	 */
+	public void setDeleteCertificateDoneTriggerScript(String deleteCertificateDoneTriggerScript) {
+		this.deleteCertificateDoneTriggerScript = deleteCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * ゲーム名を取得
+	 *
+	 * @return ゲーム名
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * ゲーム名を設定
+	 *
+	 * @param name ゲーム名
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+	 */
+	public String getSetFirebaseTokenDoneTriggerScript() {
+		return setFirebaseTokenDoneTriggerScript;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param setFirebaseTokenDoneTriggerScript Firebaseデバイストークン登録完了時 に実行されるGS2-Script
+	 */
+	public void setSetFirebaseTokenDoneTriggerScript(String setFirebaseTokenDoneTriggerScript) {
+		this.setFirebaseTokenDoneTriggerScript = setFirebaseTokenDoneTriggerScript;
+	}
+
+	/**
+	 * 通知送信完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 通知送信完了時 に実行されるGS2-Script
+	 */
+	public String getPublishDoneTriggerScript() {
+		return publishDoneTriggerScript;
+	}
+
+	/**
+	 * 通知送信完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishDoneTriggerScript 通知送信完了時 に実行されるGS2-Script
+	 */
+	public void setPublishDoneTriggerScript(String publishDoneTriggerScript) {
+		this.publishDoneTriggerScript = publishDoneTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
+	 * http/https を選択した際の転送先URLを取得
+	 *
+	 * @return http/https を選択した際の転送先URL
+	 */
+	public String getNotificationUrl() {
+		return notificationUrl;
+	}
+
+	/**
+	 * http/https を選択した際の転送先URLを設定
+	 *
+	 * @param notificationUrl http/https を選択した際の転送先URL
+	 */
+	public void setNotificationUrl(String notificationUrl) {
+		this.notificationUrl = notificationUrl;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 
 }

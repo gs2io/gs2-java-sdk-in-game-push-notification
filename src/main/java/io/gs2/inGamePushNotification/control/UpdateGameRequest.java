@@ -34,8 +34,14 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	/** ゲームの名前 */
 	private String gameName;
 
-	/** オフライン転送先URL */
-	private String notificationUrl;
+	/** クライアント証明書発行完了時 に実行されるGS2-Script */
+	private String createCertificateDoneTriggerScript;
+
+	/** クライアント証明書削除完了時 に実行されるGS2-Script */
+	private String deleteCertificateDoneTriggerScript;
+
+	/** Firebaseデバイストークン登録時 に実行されるGS2-Script */
+	private String setFirebaseTokenTriggerScript;
 
 	/** サービスクラス */
 	private String serviceClass;
@@ -43,11 +49,29 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	/** Firebaseのサーバーキー */
 	private String notificationFirebaseServerKey;
 
-	/** オフライン転送方式 */
-	private String offlineTransfer;
+	/** Firebaseデバイストークン登録完了時 に実行されるGS2-Script */
+	private String setFirebaseTokenDoneTriggerScript;
 
 	/** 説明文 */
 	private String description;
+
+	/** 通知送信時 に実行されるGS2-Script */
+	private String publishTriggerScript;
+
+	/** オフライン転送方式 */
+	private String offlineTransfer;
+
+	/** クライアント証明書発行時 に実行されるGS2-Script */
+	private String createCertificateTriggerScript;
+
+	/** オフライン転送先URL */
+	private String notificationUrl;
+
+	/** 通知送信完了時 に実行されるGS2-Script */
+	private String publishDoneTriggerScript;
+
+	/** クライアント証明書削除時 に実行されるGS2-Script */
+	private String deleteCertificateTriggerScript;
 
 
 	/**
@@ -80,31 +104,89 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	}
 
 	/**
-	 * オフライン転送先URLを取得
+	 * クライアント証明書発行完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return オフライン転送先URL
+	 * @return クライアント証明書発行完了時 に実行されるGS2-Script
 	 */
-	public String getNotificationUrl() {
-		return notificationUrl;
+	public String getCreateCertificateDoneTriggerScript() {
+		return createCertificateDoneTriggerScript;
 	}
 
 	/**
-	 * オフライン転送先URLを設定
+	 * クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param notificationUrl オフライン転送先URL
+	 * @param createCertificateDoneTriggerScript クライアント証明書発行完了時 に実行されるGS2-Script
 	 */
-	public void setNotificationUrl(String notificationUrl) {
-		this.notificationUrl = notificationUrl;
+	public void setCreateCertificateDoneTriggerScript(String createCertificateDoneTriggerScript) {
+		this.createCertificateDoneTriggerScript = createCertificateDoneTriggerScript;
 	}
 
 	/**
-	 * オフライン転送先URLを設定
+	 * クライアント証明書発行完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param notificationUrl オフライン転送先URL
+	 * @param createCertificateDoneTriggerScript クライアント証明書発行完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateGameRequest withNotificationUrl(String notificationUrl) {
-		setNotificationUrl(notificationUrl);
+	public UpdateGameRequest withCreateCertificateDoneTriggerScript(String createCertificateDoneTriggerScript) {
+		setCreateCertificateDoneTriggerScript(createCertificateDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * クライアント証明書削除完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return クライアント証明書削除完了時 に実行されるGS2-Script
+	 */
+	public String getDeleteCertificateDoneTriggerScript() {
+		return deleteCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param deleteCertificateDoneTriggerScript クライアント証明書削除完了時 に実行されるGS2-Script
+	 */
+	public void setDeleteCertificateDoneTriggerScript(String deleteCertificateDoneTriggerScript) {
+		this.deleteCertificateDoneTriggerScript = deleteCertificateDoneTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書削除完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param deleteCertificateDoneTriggerScript クライアント証明書削除完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withDeleteCertificateDoneTriggerScript(String deleteCertificateDoneTriggerScript) {
+		setDeleteCertificateDoneTriggerScript(deleteCertificateDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return Firebaseデバイストークン登録時 に実行されるGS2-Script
+	 */
+	public String getSetFirebaseTokenTriggerScript() {
+		return setFirebaseTokenTriggerScript;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param setFirebaseTokenTriggerScript Firebaseデバイストークン登録時 に実行されるGS2-Script
+	 */
+	public void setSetFirebaseTokenTriggerScript(String setFirebaseTokenTriggerScript) {
+		this.setFirebaseTokenTriggerScript = setFirebaseTokenTriggerScript;
+	}
+
+	/**
+	 * Firebaseデバイストークン登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param setFirebaseTokenTriggerScript Firebaseデバイストークン登録時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withSetFirebaseTokenTriggerScript(String setFirebaseTokenTriggerScript) {
+		setSetFirebaseTokenTriggerScript(setFirebaseTokenTriggerScript);
 		return this;
 	}
 
@@ -167,31 +249,31 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	}
 
 	/**
-	 * オフライン転送方式を取得
+	 * Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return オフライン転送方式
+	 * @return Firebaseデバイストークン登録完了時 に実行されるGS2-Script
 	 */
-	public String getOfflineTransfer() {
-		return offlineTransfer;
+	public String getSetFirebaseTokenDoneTriggerScript() {
+		return setFirebaseTokenDoneTriggerScript;
 	}
 
 	/**
-	 * オフライン転送方式を設定
+	 * Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param offlineTransfer オフライン転送方式
+	 * @param setFirebaseTokenDoneTriggerScript Firebaseデバイストークン登録完了時 に実行されるGS2-Script
 	 */
-	public void setOfflineTransfer(String offlineTransfer) {
-		this.offlineTransfer = offlineTransfer;
+	public void setSetFirebaseTokenDoneTriggerScript(String setFirebaseTokenDoneTriggerScript) {
+		this.setFirebaseTokenDoneTriggerScript = setFirebaseTokenDoneTriggerScript;
 	}
 
 	/**
-	 * オフライン転送方式を設定
+	 * Firebaseデバイストークン登録完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param offlineTransfer オフライン転送方式
+	 * @param setFirebaseTokenDoneTriggerScript Firebaseデバイストークン登録完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateGameRequest withOfflineTransfer(String offlineTransfer) {
-		setOfflineTransfer(offlineTransfer);
+	public UpdateGameRequest withSetFirebaseTokenDoneTriggerScript(String setFirebaseTokenDoneTriggerScript) {
+		setSetFirebaseTokenDoneTriggerScript(setFirebaseTokenDoneTriggerScript);
 		return this;
 	}
 
@@ -221,6 +303,180 @@ public class UpdateGameRequest extends Gs2BasicRequest<UpdateGameRequest> {
 	 */
 	public UpdateGameRequest withDescription(String description) {
 		setDescription(description);
+		return this;
+	}
+
+	/**
+	 * 通知送信時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 通知送信時 に実行されるGS2-Script
+	 */
+	public String getPublishTriggerScript() {
+		return publishTriggerScript;
+	}
+
+	/**
+	 * 通知送信時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishTriggerScript 通知送信時 に実行されるGS2-Script
+	 */
+	public void setPublishTriggerScript(String publishTriggerScript) {
+		this.publishTriggerScript = publishTriggerScript;
+	}
+
+	/**
+	 * 通知送信時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishTriggerScript 通知送信時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withPublishTriggerScript(String publishTriggerScript) {
+		setPublishTriggerScript(publishTriggerScript);
+		return this;
+	}
+
+	/**
+	 * オフライン転送方式を取得
+	 *
+	 * @return オフライン転送方式
+	 */
+	public String getOfflineTransfer() {
+		return offlineTransfer;
+	}
+
+	/**
+	 * オフライン転送方式を設定
+	 *
+	 * @param offlineTransfer オフライン転送方式
+	 */
+	public void setOfflineTransfer(String offlineTransfer) {
+		this.offlineTransfer = offlineTransfer;
+	}
+
+	/**
+	 * オフライン転送方式を設定
+	 *
+	 * @param offlineTransfer オフライン転送方式
+	 * @return this
+	 */
+	public UpdateGameRequest withOfflineTransfer(String offlineTransfer) {
+		setOfflineTransfer(offlineTransfer);
+		return this;
+	}
+
+	/**
+	 * クライアント証明書発行時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return クライアント証明書発行時 に実行されるGS2-Script
+	 */
+	public String getCreateCertificateTriggerScript() {
+		return createCertificateTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書発行時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param createCertificateTriggerScript クライアント証明書発行時 に実行されるGS2-Script
+	 */
+	public void setCreateCertificateTriggerScript(String createCertificateTriggerScript) {
+		this.createCertificateTriggerScript = createCertificateTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書発行時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param createCertificateTriggerScript クライアント証明書発行時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withCreateCertificateTriggerScript(String createCertificateTriggerScript) {
+		setCreateCertificateTriggerScript(createCertificateTriggerScript);
+		return this;
+	}
+
+	/**
+	 * オフライン転送先URLを取得
+	 *
+	 * @return オフライン転送先URL
+	 */
+	public String getNotificationUrl() {
+		return notificationUrl;
+	}
+
+	/**
+	 * オフライン転送先URLを設定
+	 *
+	 * @param notificationUrl オフライン転送先URL
+	 */
+	public void setNotificationUrl(String notificationUrl) {
+		this.notificationUrl = notificationUrl;
+	}
+
+	/**
+	 * オフライン転送先URLを設定
+	 *
+	 * @param notificationUrl オフライン転送先URL
+	 * @return this
+	 */
+	public UpdateGameRequest withNotificationUrl(String notificationUrl) {
+		setNotificationUrl(notificationUrl);
+		return this;
+	}
+
+	/**
+	 * 通知送信完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 通知送信完了時 に実行されるGS2-Script
+	 */
+	public String getPublishDoneTriggerScript() {
+		return publishDoneTriggerScript;
+	}
+
+	/**
+	 * 通知送信完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishDoneTriggerScript 通知送信完了時 に実行されるGS2-Script
+	 */
+	public void setPublishDoneTriggerScript(String publishDoneTriggerScript) {
+		this.publishDoneTriggerScript = publishDoneTriggerScript;
+	}
+
+	/**
+	 * 通知送信完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param publishDoneTriggerScript 通知送信完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withPublishDoneTriggerScript(String publishDoneTriggerScript) {
+		setPublishDoneTriggerScript(publishDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * クライアント証明書削除時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return クライアント証明書削除時 に実行されるGS2-Script
+	 */
+	public String getDeleteCertificateTriggerScript() {
+		return deleteCertificateTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書削除時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param deleteCertificateTriggerScript クライアント証明書削除時 に実行されるGS2-Script
+	 */
+	public void setDeleteCertificateTriggerScript(String deleteCertificateTriggerScript) {
+		this.deleteCertificateTriggerScript = deleteCertificateTriggerScript;
+	}
+
+	/**
+	 * クライアント証明書削除時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param deleteCertificateTriggerScript クライアント証明書削除時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameRequest withDeleteCertificateTriggerScript(String deleteCertificateTriggerScript) {
+		setDeleteCertificateTriggerScript(deleteCertificateTriggerScript);
 		return this;
 	}
 
