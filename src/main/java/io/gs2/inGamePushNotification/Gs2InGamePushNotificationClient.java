@@ -77,12 +77,15 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
 
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/certificate",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/certificate",
 				credential,
 				ENDPOINT,
 				CreateCertificateRequest.Constant.MODULE,
 				CreateCertificateRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         post.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -126,21 +129,21 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	public CreateGameResult createGame(CreateGameRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("name", request.getName())
 				.put("serviceClass", request.getServiceClass())
-				.put("offlineTransfer", request.getOfflineTransfer())
-				.put("name", request.getName());
+				.put("offlineTransfer", request.getOfflineTransfer());
 
-        if(request.getCreateCertificateDoneTriggerScript() != null) body.put("createCertificateDoneTriggerScript", request.getCreateCertificateDoneTriggerScript());
-        if(request.getDeleteCertificateDoneTriggerScript() != null) body.put("deleteCertificateDoneTriggerScript", request.getDeleteCertificateDoneTriggerScript());
-        if(request.getSetFirebaseTokenTriggerScript() != null) body.put("setFirebaseTokenTriggerScript", request.getSetFirebaseTokenTriggerScript());
-        if(request.getNotificationFirebaseServerKey() != null) body.put("notificationFirebaseServerKey", request.getNotificationFirebaseServerKey());
-        if(request.getSetFirebaseTokenDoneTriggerScript() != null) body.put("setFirebaseTokenDoneTriggerScript", request.getSetFirebaseTokenDoneTriggerScript());
-        if(request.getPublishDoneTriggerScript() != null) body.put("publishDoneTriggerScript", request.getPublishDoneTriggerScript());
-        if(request.getCreateCertificateTriggerScript() != null) body.put("createCertificateTriggerScript", request.getCreateCertificateTriggerScript());
-        if(request.getDeleteCertificateTriggerScript() != null) body.put("deleteCertificateTriggerScript", request.getDeleteCertificateTriggerScript());
-        if(request.getNotificationUrl() != null) body.put("notificationUrl", request.getNotificationUrl());
-        if(request.getPublishTriggerScript() != null) body.put("publishTriggerScript", request.getPublishTriggerScript());
         if(request.getDescription() != null) body.put("description", request.getDescription());
+        if(request.getNotificationUrl() != null) body.put("notificationUrl", request.getNotificationUrl());
+        if(request.getNotificationFirebaseServerKey() != null) body.put("notificationFirebaseServerKey", request.getNotificationFirebaseServerKey());
+        if(request.getCreateCertificateTriggerScript() != null) body.put("createCertificateTriggerScript", request.getCreateCertificateTriggerScript());
+        if(request.getCreateCertificateDoneTriggerScript() != null) body.put("createCertificateDoneTriggerScript", request.getCreateCertificateDoneTriggerScript());
+        if(request.getDeleteCertificateTriggerScript() != null) body.put("deleteCertificateTriggerScript", request.getDeleteCertificateTriggerScript());
+        if(request.getDeleteCertificateDoneTriggerScript() != null) body.put("deleteCertificateDoneTriggerScript", request.getDeleteCertificateDoneTriggerScript());
+        if(request.getPublishTriggerScript() != null) body.put("publishTriggerScript", request.getPublishTriggerScript());
+        if(request.getPublishDoneTriggerScript() != null) body.put("publishDoneTriggerScript", request.getPublishDoneTriggerScript());
+        if(request.getSetFirebaseTokenTriggerScript() != null) body.put("setFirebaseTokenTriggerScript", request.getSetFirebaseTokenTriggerScript());
+        if(request.getSetFirebaseTokenDoneTriggerScript() != null) body.put("setFirebaseTokenDoneTriggerScript", request.getSetFirebaseTokenDoneTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/game",
 				credential,
@@ -148,6 +151,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				CreateGameRequest.Constant.MODULE,
 				CreateGameRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateGameResult.class);
@@ -167,7 +173,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public void deleteCertificate(DeleteCertificateRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/certificate";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/certificate";
 
 
 
@@ -177,6 +183,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				DeleteCertificateRequest.Constant.MODULE,
 				DeleteCertificateRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         delete.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -195,7 +204,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public void deleteGame(DeleteGameRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "";
 
 
 
@@ -205,6 +214,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				DeleteGameRequest.Constant.MODULE,
 				DeleteGameRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -240,6 +252,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				DescribeGameRequest.Constant.MODULE,
 				DescribeGameRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeGameResult.class);
@@ -269,6 +284,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				DescribeServiceClassRequest.Constant.MODULE,
 				DescribeServiceClassRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeServiceClassResult.class);
@@ -288,7 +306,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public DescribeStatusResult describeStatus(DescribeStatusRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/user";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
@@ -304,6 +322,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				DescribeStatusRequest.Constant.MODULE,
 				DescribeStatusRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeStatusResult.class);
@@ -323,7 +344,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public GetGameResult getGame(GetGameRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "";
 
 
 
@@ -333,6 +354,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				GetGameRequest.Constant.MODULE,
 				GetGameRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetGameResult.class);
@@ -352,7 +376,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public GetGameStatusResult getGameStatus(GetGameStatusRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/status";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/status";
 
 
 
@@ -362,6 +386,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				GetGameStatusRequest.Constant.MODULE,
 				GetGameStatusRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetGameStatusResult.class);
@@ -381,7 +408,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public GetMqttHostResult getMqttHost(GetMqttHostRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/server/mqtt";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/server/mqtt";
 
 
 
@@ -391,6 +418,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				GetMqttHostRequest.Constant.MODULE,
 				GetMqttHostRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -411,7 +441,7 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 
 	public GetWebSocketHostResult getWebSocketHost(GetWebSocketHostRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/server/webSocket";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/server/webSocket";
 
 
 
@@ -421,6 +451,9 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				ENDPOINT,
 				GetWebSocketHostRequest.Constant.MODULE,
 				GetWebSocketHostRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -444,18 +477,21 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 	public PublishResult publish(PublishRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("subject", request.getSubject())
 				.put("body", request.getBody())
-				.put("enableOfflineTransfer", request.getEnableOfflineTransfer())
-				.put("subject", request.getSubject());
+				.put("enableOfflineTransfer", request.getEnableOfflineTransfer());
 
         if(request.getOfflineTransferSound() != null) body.put("offlineTransferSound", request.getOfflineTransferSound());
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user/" + (request.getUserId() == null ? "null" : request.getUserId()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "",
 				credential,
 				ENDPOINT,
 				PublishRequest.Constant.MODULE,
 				PublishRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, PublishResult.class);
@@ -481,12 +517,15 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				.put("token", request.getToken());
 
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "/user",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "/user",
 				credential,
 				ENDPOINT,
 				SetFirebaseTokenRequest.Constant.MODULE,
 				SetFirebaseTokenRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         put.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -511,24 +550,27 @@ public class Gs2InGamePushNotificationClient extends AbstractGs2Client<Gs2InGame
 				.put("serviceClass", request.getServiceClass())
 				.put("offlineTransfer", request.getOfflineTransfer());
 
-        if(request.getCreateCertificateDoneTriggerScript() != null) body.put("createCertificateDoneTriggerScript", request.getCreateCertificateDoneTriggerScript());
-        if(request.getDeleteCertificateDoneTriggerScript() != null) body.put("deleteCertificateDoneTriggerScript", request.getDeleteCertificateDoneTriggerScript());
-        if(request.getSetFirebaseTokenTriggerScript() != null) body.put("setFirebaseTokenTriggerScript", request.getSetFirebaseTokenTriggerScript());
-        if(request.getNotificationFirebaseServerKey() != null) body.put("notificationFirebaseServerKey", request.getNotificationFirebaseServerKey());
-        if(request.getSetFirebaseTokenDoneTriggerScript() != null) body.put("setFirebaseTokenDoneTriggerScript", request.getSetFirebaseTokenDoneTriggerScript());
         if(request.getDescription() != null) body.put("description", request.getDescription());
-        if(request.getPublishTriggerScript() != null) body.put("publishTriggerScript", request.getPublishTriggerScript());
-        if(request.getCreateCertificateTriggerScript() != null) body.put("createCertificateTriggerScript", request.getCreateCertificateTriggerScript());
         if(request.getNotificationUrl() != null) body.put("notificationUrl", request.getNotificationUrl());
-        if(request.getPublishDoneTriggerScript() != null) body.put("publishDoneTriggerScript", request.getPublishDoneTriggerScript());
+        if(request.getNotificationFirebaseServerKey() != null) body.put("notificationFirebaseServerKey", request.getNotificationFirebaseServerKey());
+        if(request.getCreateCertificateTriggerScript() != null) body.put("createCertificateTriggerScript", request.getCreateCertificateTriggerScript());
+        if(request.getCreateCertificateDoneTriggerScript() != null) body.put("createCertificateDoneTriggerScript", request.getCreateCertificateDoneTriggerScript());
         if(request.getDeleteCertificateTriggerScript() != null) body.put("deleteCertificateTriggerScript", request.getDeleteCertificateTriggerScript());
+        if(request.getDeleteCertificateDoneTriggerScript() != null) body.put("deleteCertificateDoneTriggerScript", request.getDeleteCertificateDoneTriggerScript());
+        if(request.getPublishTriggerScript() != null) body.put("publishTriggerScript", request.getPublishTriggerScript());
+        if(request.getPublishDoneTriggerScript() != null) body.put("publishDoneTriggerScript", request.getPublishDoneTriggerScript());
+        if(request.getSetFirebaseTokenTriggerScript() != null) body.put("setFirebaseTokenTriggerScript", request.getSetFirebaseTokenTriggerScript());
+        if(request.getSetFirebaseTokenDoneTriggerScript() != null) body.put("setFirebaseTokenDoneTriggerScript", request.getSetFirebaseTokenDoneTriggerScript());
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null ? "null" : request.getGameName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/game/" + (request.getGameName() == null || request.getGameName().equals("") ? "null" : request.getGameName()) + "",
 				credential,
 				ENDPOINT,
 				UpdateGameRequest.Constant.MODULE,
 				UpdateGameRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(put, UpdateGameResult.class);
