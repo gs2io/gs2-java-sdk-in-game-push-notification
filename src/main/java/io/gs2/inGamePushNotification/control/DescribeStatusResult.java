@@ -27,30 +27,12 @@ import io.gs2.inGamePushNotification.model.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class DescribeStatusResult {
 
-	/** 次のページを読み込むためのトークン */
-	private String nextPageToken;
-
 	/** オンラインステータス */
 	private List<Status> items;
 
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
 
-	/**
-	 * 次のページを読み込むためのトークンを取得
-	 *
-	 * @return 次のページを読み込むためのトークン
-	 */
-	public String getNextPageToken() {
-		return nextPageToken;
-	}
-
-	/**
-	 * 次のページを読み込むためのトークンを設定
-	 *
-	 * @param nextPageToken 次のページを読み込むためのトークン
-	 */
-	public void setNextPageToken(String nextPageToken) {
-		this.nextPageToken = nextPageToken;
-	}
 
 	/**
 	 * オンラインステータスを取得
@@ -68,6 +50,24 @@ public class DescribeStatusResult {
 	 */
 	public void setItems(List<Status> items) {
 		this.items = items;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
+	 */
+	public String getNextPageToken() {
+		return nextPageToken;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
+	 */
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
 	}
 
 }

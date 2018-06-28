@@ -30,36 +30,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Certificate implements Serializable {
 
-	/** PFXフォーマットの秘密鍵 */
-	private String pfx;
-
 	/** 証明書ID */
 	private String certificateId;
-
-	/** 秘密鍵 */
-	private String privateKey;
 
 	/** クライアント証明書 */
 	private String certificate;
 
+	/** 秘密鍵 */
+	private String privateKey;
 
-	/**
-	 * PFXフォーマットの秘密鍵を取得
-	 *
-	 * @return PFXフォーマットの秘密鍵
-	 */
-	public String getPfx() {
-		return pfx;
-	}
+	/** PFXフォーマットの秘密鍵 */
+	private String pfx;
 
-	/**
-	 * PFXフォーマットの秘密鍵を設定
-	 *
-	 * @param pfx PFXフォーマットの秘密鍵
-	 */
-	public void setPfx(String pfx) {
-		this.pfx = pfx;
-	}
 
 	/**
 	 * 証明書IDを取得
@@ -77,6 +59,24 @@ public class Certificate implements Serializable {
 	 */
 	public void setCertificateId(String certificateId) {
 		this.certificateId = certificateId;
+	}
+
+	/**
+	 * クライアント証明書を取得
+	 *
+	 * @return クライアント証明書
+	 */
+	public String getCertificate() {
+		return certificate;
+	}
+
+	/**
+	 * クライアント証明書を設定
+	 *
+	 * @param certificate クライアント証明書
+	 */
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
 	}
 
 	/**
@@ -98,21 +98,21 @@ public class Certificate implements Serializable {
 	}
 
 	/**
-	 * クライアント証明書を取得
+	 * PFXフォーマットの秘密鍵を取得
 	 *
-	 * @return クライアント証明書
+	 * @return PFXフォーマットの秘密鍵
 	 */
-	public String getCertificate() {
-		return certificate;
+	public String getPfx() {
+		return pfx;
 	}
 
 	/**
-	 * クライアント証明書を設定
+	 * PFXフォーマットの秘密鍵を設定
 	 *
-	 * @param certificate クライアント証明書
+	 * @param pfx PFXフォーマットの秘密鍵
 	 */
-	public void setCertificate(String certificate) {
-		this.certificate = certificate;
+	public void setPfx(String pfx) {
+		this.pfx = pfx;
 	}
 
 }

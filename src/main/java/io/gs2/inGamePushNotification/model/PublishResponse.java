@@ -30,33 +30,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class PublishResponse implements Serializable {
 
-	/** 本文 */
-	private String body;
-
 	/** 通知に使用した方式 */
 	private String type;
 
 	/** 件名 */
 	private String subject;
 
+	/** 本文 */
+	private String body;
 
-	/**
-	 * 本文を取得
-	 *
-	 * @return 本文
-	 */
-	public String getBody() {
-		return body;
-	}
-
-	/**
-	 * 本文を設定
-	 *
-	 * @param body 本文
-	 */
-	public void setBody(String body) {
-		this.body = body;
-	}
 
 	/**
 	 * 通知に使用した方式を取得
@@ -92,6 +74,24 @@ public class PublishResponse implements Serializable {
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+
+	/**
+	 * 本文を取得
+	 *
+	 * @return 本文
+	 */
+	public String getBody() {
+		return body;
+	}
+
+	/**
+	 * 本文を設定
+	 *
+	 * @param body 本文
+	 */
+	public void setBody(String body) {
+		this.body = body;
 	}
 
 }

@@ -30,11 +30,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class MqttHost implements Serializable {
 
-	/** ホスト名 */
-	private String host;
-
 	/** ゲームGRN */
 	private String gameId;
+
+	/** ホスト名 */
+	private String host;
 
 	/** 待受ポート */
 	private Integer port;
@@ -42,24 +42,6 @@ public class MqttHost implements Serializable {
 	/** ルート証明書 */
 	private String rootCertificate;
 
-
-	/**
-	 * ホスト名を取得
-	 *
-	 * @return ホスト名
-	 */
-	public String getHost() {
-		return host;
-	}
-
-	/**
-	 * ホスト名を設定
-	 *
-	 * @param host ホスト名
-	 */
-	public void setHost(String host) {
-		this.host = host;
-	}
 
 	/**
 	 * ゲームGRNを取得
@@ -77,6 +59,24 @@ public class MqttHost implements Serializable {
 	 */
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
+	}
+
+	/**
+	 * ホスト名を取得
+	 *
+	 * @return ホスト名
+	 */
+	public String getHost() {
+		return host;
+	}
+
+	/**
+	 * ホスト名を設定
+	 *
+	 * @param host ホスト名
+	 */
+	public void setHost(String host) {
+		this.host = host;
 	}
 
 	/**

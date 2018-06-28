@@ -30,54 +30,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Status implements Serializable {
 
-	/** ステータス */
-	private String status;
-
-	/** 登録日時 */
-	private Integer createAt;
-
 	/** ユーザID */
 	private String userId;
+
+	/** ステータス */
+	private String status;
 
 	/** Firebaseトークン */
 	private String fcmToken;
 
+	/** 登録日時 */
+	private Integer createAt;
 
-	/**
-	 * ステータスを取得
-	 *
-	 * @return ステータス
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * ステータスを設定
-	 *
-	 * @param status ステータス
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	/**
-	 * 登録日時を取得
-	 *
-	 * @return 登録日時
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 登録日時を設定
-	 *
-	 * @param createAt 登録日時
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
-	}
 
 	/**
 	 * ユーザIDを取得
@@ -98,6 +62,24 @@ public class Status implements Serializable {
 	}
 
 	/**
+	 * ステータスを取得
+	 *
+	 * @return ステータス
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * ステータスを設定
+	 *
+	 * @param status ステータス
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
 	 * Firebaseトークンを取得
 	 *
 	 * @return Firebaseトークン
@@ -113,6 +95,24 @@ public class Status implements Serializable {
 	 */
 	public void setFcmToken(String fcmToken) {
 		this.fcmToken = fcmToken;
+	}
+
+	/**
+	 * 登録日時を取得
+	 *
+	 * @return 登録日時
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 登録日時を設定
+	 *
+	 * @param createAt 登録日時
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 }

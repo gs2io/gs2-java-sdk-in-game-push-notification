@@ -30,30 +30,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class FirebaseToken implements Serializable {
 
-	/** トークン */
-	private String token;
-
 	/** ユーザID */
 	private String userId;
 
+	/** トークン */
+	private String token;
 
-	/**
-	 * トークンを取得
-	 *
-	 * @return トークン
-	 */
-	public String getToken() {
-		return token;
-	}
-
-	/**
-	 * トークンを設定
-	 *
-	 * @param token トークン
-	 */
-	public void setToken(String token) {
-		this.token = token;
-	}
 
 	/**
 	 * ユーザIDを取得
@@ -71,6 +53,24 @@ public class FirebaseToken implements Serializable {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	/**
+	 * トークンを取得
+	 *
+	 * @return トークン
+	 */
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * トークンを設定
+	 *
+	 * @param token トークン
+	 */
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

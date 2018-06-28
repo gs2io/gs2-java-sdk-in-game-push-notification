@@ -37,6 +37,9 @@ public class PublishRequest extends Gs2BasicRequest<PublishRequest> {
 	/** 通知の送信先ユーザID */
 	private String userId;
 
+	/** 件名 */
+	private String subject;
+
 	/** 本文 */
 	private String body;
 
@@ -45,9 +48,6 @@ public class PublishRequest extends Gs2BasicRequest<PublishRequest> {
 
 	/** Firebaseへの転送時に使用する通知音ファイル名 */
 	private String offlineTransferSound;
-
-	/** 件名 */
-	private String subject;
 
 
 	/**
@@ -105,6 +105,35 @@ public class PublishRequest extends Gs2BasicRequest<PublishRequest> {
 	 */
 	public PublishRequest withUserId(String userId) {
 		setUserId(userId);
+		return this;
+	}
+
+	/**
+	 * 件名を取得
+	 *
+	 * @return 件名
+	 */
+	public String getSubject() {
+		return subject;
+	}
+
+	/**
+	 * 件名を設定
+	 *
+	 * @param subject 件名
+	 */
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	/**
+	 * 件名を設定
+	 *
+	 * @param subject 件名
+	 * @return this
+	 */
+	public PublishRequest withSubject(String subject) {
+		setSubject(subject);
 		return this;
 	}
 
@@ -192,35 +221,6 @@ public class PublishRequest extends Gs2BasicRequest<PublishRequest> {
 	 */
 	public PublishRequest withOfflineTransferSound(String offlineTransferSound) {
 		setOfflineTransferSound(offlineTransferSound);
-		return this;
-	}
-
-	/**
-	 * 件名を取得
-	 *
-	 * @return 件名
-	 */
-	public String getSubject() {
-		return subject;
-	}
-
-	/**
-	 * 件名を設定
-	 *
-	 * @param subject 件名
-	 */
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	/**
-	 * 件名を設定
-	 *
-	 * @param subject 件名
-	 * @return this
-	 */
-	public PublishRequest withSubject(String subject) {
-		setSubject(subject);
 		return this;
 	}
 
