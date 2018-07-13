@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.gs2</groupId>
   <artifactId>gs2-java-sdk-in-game-push-notification</artifactId>
-  <version>0.5.2</version>
+  <version>0.5.4</version>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>io.gs2</groupId>
 			<artifactId>gs2-java-sdk-auth</artifactId>
-			<version>0.5.2</version>
+			<version>0.5.4</version>
 		</dependency>
 	</dependencies>
 	
